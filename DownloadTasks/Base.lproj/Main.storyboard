@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DownloadTasks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="br5-hg-Szh">
+                                <rect key="frame" x="24" y="778" width="366" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRW-ub-6eE" userLabel="Simple Download Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
+                                        <state key="normal" title="Simple Download"/>
+                                        <connections>
+                                            <action selector="simpleDownloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tQ1-M7-MgK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PW-yp-IhP" userLabel="Download With Progress Button">
+                                        <rect key="frame" x="0.0" y="30" width="366" height="30"/>
+                                        <state key="normal" title="Download With Progress"/>
+                                        <connections>
+                                            <action selector="downloadWithProgressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eEv-Lu-P32"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ddW-9l-Fx6">
+                                <rect key="frame" x="24" y="68" width="366" height="4"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UMQ-vl-G7a" userLabel="Download Progress View">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="4"/>
+                                    </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDS-35-4bU">
+                                        <rect key="frame" x="0.0" y="4" width="366" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ddW-9l-Fx6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="24" id="B4o-mw-uap"/>
+                            <constraint firstItem="ddW-9l-Fx6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="M6j-G5-dPu"/>
+                            <constraint firstItem="br5-hg-Szh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Me2-hr-1JO"/>
+                            <constraint firstItem="br5-hg-Szh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="bUP-SX-YfW"/>
+                            <constraint firstItem="ddW-9l-Fx6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eNG-PH-0aD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="br5-hg-Szh" secondAttribute="bottom" constant="24" id="xIJ-n1-d8L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KTg-QK-bzR"/>
+                    <connections>
+                        <outlet property="downloadProgressView" destination="UMQ-vl-G7a" id="WUJ-mK-TM5"/>
+                        <outlet property="messageLabel" destination="DDS-35-4bU" id="nvs-ib-CXd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
