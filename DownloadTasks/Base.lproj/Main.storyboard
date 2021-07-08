@@ -17,17 +17,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="br5-hg-Szh">
-                                <rect key="frame" x="24" y="778" width="366" height="60"/>
+                                <rect key="frame" x="24" y="718" width="366" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRW-ub-6eE" userLabel="Simple Download Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-Ey-QAz" userLabel="Pause Download Button">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
+                                        <state key="normal" title="Pause Download"/>
+                                        <connections>
+                                            <action selector="pauseDownloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1dG-gy-A0m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIW-Wt-sOO" userLabel="Resume Download Button">
+                                        <rect key="frame" x="0.0" y="30" width="366" height="30"/>
+                                        <state key="normal" title="Resume Download"/>
+                                        <connections>
+                                            <action selector="resmeDownloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zhx-2U-Jw1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRW-ub-6eE" userLabel="Simple Download Button">
+                                        <rect key="frame" x="0.0" y="60" width="366" height="30"/>
                                         <state key="normal" title="Simple Download"/>
                                         <connections>
                                             <action selector="simpleDownloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tQ1-M7-MgK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PW-yp-IhP" userLabel="Download With Progress Button">
-                                        <rect key="frame" x="0.0" y="30" width="366" height="30"/>
+                                        <rect key="frame" x="0.0" y="90" width="366" height="30"/>
                                         <state key="normal" title="Download With Progress"/>
                                         <connections>
                                             <action selector="downloadWithProgressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eEv-Lu-P32"/>

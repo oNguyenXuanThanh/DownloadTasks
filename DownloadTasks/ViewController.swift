@@ -9,7 +9,7 @@ import UIKit
 
 private struct Constants {
     static let simpleDownloadURL = "https://data25.chiasenhac.com/download2/2172/5/2171043-de949f5d/128/Tron%20Tim%20-%20Den_%20MTV%20Band.mp3"
-    static let progressDownloadURL = "https://data25.chiasenhac.com/stream2/2171/5/2170940-6197d93a/flac/The%20Playah%20Special%20Performance_%20-%20Soobin.flac"
+    static let progressDownloadURL = "https://desktop-app.chatwork.com/installer/Chatwork-x64-setup.zip"
 }
 
 class ViewController: UIViewController, URLSessionDelegate {
@@ -22,6 +22,9 @@ class ViewController: UIViewController, URLSessionDelegate {
         delegate: self,
         delegateQueue: nil
     )
+
+    private var currentDownloadTask: URLSessionDownloadTask!
+    private var resumeData: Data?
 
     @IBAction private func simpleDownloadButtonTapped(_ sender: Any) {
         guard let url = URL(string: Constants.simpleDownloadURL) else {
@@ -66,6 +69,7 @@ class ViewController: UIViewController, URLSessionDelegate {
                 print("File error: \(error.localizedDescription)")
             }
         }
+        currentDownloadTask = downloadTask
         downloadTask.resume()
     }
 
@@ -73,10 +77,35 @@ class ViewController: UIViewController, URLSessionDelegate {
         guard let url = URL(string: Constants.progressDownloadURL) else {
             return
         }
+        messageLabel.text = nil
         let downloadTask = urlSession.downloadTask(with: url)
+        currentDownloadTask = downloadTask
         downloadTask.resume()
     }
 
+    @IBAction private func pauseDownloadButtonTapped(_ sender: Any) {
+        currentDownloadTask.cancel { resumeDataOrNil in
+            guard let resumeData = resumeDataOrNil else {
+                // Download không thể resume, update lại UI nếu cần thiết
+                print("Download can not resume")
+                return
+            }
+            self.resumeData = resumeData
+            DispatchQueue.main.async {
+                self.messageLabel.text = "Download paused"
+            }
+        }
+    }
+
+    @IBAction private func resmeDownloadButtonTapped(_ sender: Any) {
+        guard let resumeData = resumeData else {
+            return
+        }
+        messageLabel.text = "Resuming download"
+        let downloadTask = urlSession.downloadTask(withResumeData: resumeData)
+        currentDownloadTask = downloadTask
+        downloadTask.resume()
+    }
 }
 
 extension ViewController: URLSessionDownloadDelegate {
@@ -93,6 +122,22 @@ extension ViewController: URLSessionDownloadDelegate {
         // Cập nhật tiến độ download lên UIProgressBar trên main thread
         DispatchQueue.main.async {
             self.downloadProgressView.progress = downloadProgress
+        }
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        guard let error = error else {
+            return
+        }
+        // Lấy ra userInfo của error
+        let userInfo = (error as NSError).userInfo
+        // Kiểm tra xem key NSURLSessionDownloadTaskResumeData có tồn tại hay không?
+        // Nếu có thì convert value của nó sang kiểu Data và lưu lại resumeData
+        if let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
+            self.resumeData = resumeData
+            DispatchQueue.main.async {
+                self.messageLabel.text = "Download paused"
+            }
         }
     }
 
